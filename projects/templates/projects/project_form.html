@@ -1,0 +1,287 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if form.instance.pk %}
+        Edit Project
+    {% else %}
+        Create Project
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h2 class="mb-1">
+                {% if form.instance.pk %}
+                    Edit Project
+                {% else %}
+                    Create Project
+                {% endif %}
+            </h2>
+
+            <p class="text-muted mb-0">
+                Manage DMAIC project information
+            </p>
+
+        </div>
+
+        <a href="{% url 'projects:project-list' %}"
+           class="btn btn-outline-secondary">
+
+            <i class="bi bi-arrow-left"></i>
+            Back
+
+        </a>
+
+    </div>
+
+    <form method="post">
+
+        {% if form.non_field_errors %}
+<div class="alert alert-danger">
+    {{ form.non_field_errors }}
+</div>
+{% endif %}
+
+        {% csrf_token %}
+
+        <!-- Project Information Card -->
+
+        <div class="card shadow-sm mb-4">
+
+            <div class="card-header">
+
+                <h5 class="mb-0">
+                    <i class="bi bi-folder2-open"></i>
+                    Project Information
+                </h5>
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="row g-3">
+
+    <div class="col-md-6">
+        <label class="form-label">Project Title</label>
+        {{ form.title }}
+        {{ form.title.errors }}
+    </div>
+
+    <div class="col-md-6">
+        <label class="form-label">Project Code</label>
+        {{ form.project_code }}
+        {{ form.project_code.errors }}
+    </div>
+
+    <div class="col-md-4">
+        <label class="form-label">Project Type</label>
+        {{ form.project_type }}
+        {{ form.project_type.errors }}
+    </div>
+
+    <div class="col-md-4">
+        <label class="form-label">Priority</label>
+        {{ form.priority }}
+        {{ form.priority.errors }}
+    </div>
+
+    <div class="col-md-4">
+        <label class="form-label">Status</label>
+        {{ form.status }}
+        {{ form.status.errors }}
+    </div>
+
+    <div class="col-md-4">
+        <label class="form-label">Start Date</label>
+        {{ form.start_date }}
+        {{ form.start_date.errors }}
+    </div>
+
+    <div class="col-md-4">
+        <label class="form-label">Target Completion</label>
+        {{ form.target_completion_date }}
+        {{ form.target_completion_date.errors }}
+    </div>
+
+    <div class="col-md-4">
+        <label class="form-label">Actual Completion</label>
+        {{ form.actual_completion_date }}
+        {{ form.actual_completion_date.errors }}
+    </div>
+
+</div>
+
+            </div>
+
+        </div>
+
+        <!-- Project Charter -->
+
+        <div class="card shadow-sm mb-4">
+
+            <div class="card-header">
+
+                <h5 class="mb-0">
+                    <i class="bi bi-file-earmark-text"></i>
+                    Project Charter
+                </h5>
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="row g-4">
+
+    <div class="col-12">
+
+        <label class="form-label">
+            Problem Statement
+        </label>
+
+        {{ form.problem_statement }}
+        {{ form.problem_statement.errors }}
+
+        <div class="form-text">
+            Describe the current problem that this project aims to solve.
+        </div>
+
+    </div>
+
+    <div class="col-12">
+
+        <label class="form-label">
+            Goal Statement
+        </label>
+
+        {{ form.goal_statement }}
+        {{ form.goal_statement.errors }}
+
+        <div class="form-text">
+            Define the measurable objective of the project.
+        </div>
+
+    </div>
+
+    <div class="col-12">
+
+        <label class="form-label">
+            Business Case
+        </label>
+
+        {{ form.business_case }}
+        {{ form.business_case.errors }}
+
+        <div class="form-text">
+            Explain why this project is important to the organization.
+        </div>
+
+    </div>
+
+</div>
+
+            </div>
+
+        </div>
+
+        <!-- Scope -->
+
+        <div class="card shadow-sm mb-4">
+
+            <div class="card-header">
+
+                <h5 class="mb-0">
+                    <i class="bi bi-diagram-3"></i>
+                    Scope & Benefits
+                </h5>
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="row g-4">
+
+    <div class="col-md-6">
+
+        <label class="form-label">
+            Scope (In)
+        </label>
+
+        {{ form.scope_in }}
+        {{ form.scope_in.errors }}
+
+        <div class="form-text">
+            Define what is included in this project.
+        </div>
+
+    </div>
+
+    <div class="col-md-6">
+
+        <label class="form-label">
+            Scope (Out)
+        </label>
+
+        {{ form.scope_out }}
+        {{ form.scope_out.errors }}
+
+        <div class="form-text">
+            Define what is excluded from this project.
+        </div>
+
+    </div>
+
+    <div class="col-12">
+
+        <label class="form-label">
+            Expected Benefits
+        </label>
+
+        {{ form.benefits }}
+        {{ form.benefits.errors }}
+
+        <div class="form-text">
+            List the expected quality, cost, delivery, safety, or productivity improvements.
+        </div>
+
+    </div>
+
+</div>
+
+            </div>
+
+        </div>
+
+        <div class="text-end">
+
+            <a href="{% url 'projects:project-list' %}"
+               class="btn btn-secondary">
+
+                Cancel
+
+            </a>
+
+            <button type="submit" class="btn btn-primary">
+
+    <i class="bi bi-floppy"></i>
+
+    {% if form.instance.pk %}
+        Update Project
+    {% else %}
+        Create Project
+    {% endif %}
+
+</button>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}Projects{% endblock %}
+
+{% block content %}
+
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2>Projects</h2>
+        <p class="text-muted mb-0">
+            Manage your DMAIC improvement projects.
+        </p>
+    </div>
+
+    <a href="{% url 'projects:project-create' %}" class="btn btn-primary">
+        <i class="bi bi-plus-circle"></i>
+        New Project
+    </a>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+
+        {% if projects %}
+
+        <table class="table table-hover align-middle">
+
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Title</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Priority</th>
+                    <th>Target Date</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+            {% for project in projects %}
+
+                <tr>
+                    <td>{{ project.project_code }}</td>
+                    <td>
+                        <a href="{% url 'projects:project-detail' project.pk %}">
+                            {{ project.title }}
+                        </a>
+                    </td>
+                    <td>{{ project.get_project_type_display }}</td>
+                    <td>{{ project.get_status_display }}</td>
+                    <td>{{ project.get_priority_display }}</td>
+                    <td>{{ project.target_completion_date|default:"-" }}</td>
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        {% else %}
+
+        <div class="text-center py-5">
+
+            <i class="bi bi-folder2-open display-3 text-secondary"></i>
+
+            <h4 class="mt-3">
+                No Projects Yet
+            </h4>
+
+            <p class="text-muted">
+                Create your first DMAIC project to get started.
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

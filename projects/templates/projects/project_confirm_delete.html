@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}
+Delete Project
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-7">
+
+            <div class="card border-danger shadow">
+
+                <div class="card-header bg-danger text-white">
+
+                    <h4 class="mb-0">
+                        <i class="bi bi-trash"></i>
+                        Delete Project
+                    </h4>
+
+                </div>
+
+                <div class="card-body">
+
+                    <p class="fs-5">
+                        Are you sure you want to delete this project?
+                    </p>
+
+                    <table class="table">
+
+                        <tr>
+                            <th width="35%">Project Code</th>
+                            <td>{{ object.project_code }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Project Title</th>
+                            <td>{{ object.title }}</td>
+                        </tr>
+
+                    </table>
+
+                    <div class="alert alert-warning">
+
+                        <strong>Warning!</strong><br>
+
+                        This action cannot be undone.
+                        All project-related information associated with this project will also be removed.
+
+                    </div>
+
+                    <form method="post">
+
+                        {% csrf_token %}
+
+                        <a href="{% url 'projects:project-detail' object.pk %}"
+                           class="btn btn-secondary">
+
+                            Cancel
+
+                        </a>
+
+                        <button
+                            type="submit"
+                            class="btn btn-danger">
+
+                            <i class="bi bi-trash"></i>
+
+                            Delete Project
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

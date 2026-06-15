@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h3>Add / Edit Team Member</h3>
+
+    <form method="post">
+        {% csrf_token %}
+
+        {{ form.non_field_errors }}
+
+        <div class="mb-3">
+            <label>Name</label>
+            {{ form.employee_name }}
+        </div>
+
+        <div class="mb-3">
+            <label>Employee ID</label>
+            {{ form.employee_id }}
+        </div>
+
+        <div class="mb-3">
+            <label>Designation</label>
+            {{ form.designation }}
+        </div>
+
+        <div class="mb-3">
+            <label>Department</label>
+            {{ form.department }}
+        </div>
+
+        <div class="mb-3">
+            <label>Email</label>
+            {{ form.email }}
+        </div>
+
+        <div class="mb-3">
+            <label>Phone</label>
+            {{ form.phone }}
+        </div>
+
+        <div class="mb-3">
+            <label>Role</label>
+            {{ form.role }}
+        </div>
+
+        <div class="mb-3">
+            <label>Display Order</label>
+            {{ form.display_order }}
+        </div>
+
+        <button type="submit" class="btn btn-success">
+            Save
+        </button>
+
+        <a href="javascript:history.back()" class="btn btn-secondary">
+            Cancel
+        </a>
+
+    </form>
+
+</div>
+
+{% endblock %}

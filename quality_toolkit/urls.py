@@ -21,5 +21,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include("django.contrib.auth.urls")),
     # Home Page
-    path("", include("accounts.urls")),
+    path('accounts/', include("accounts.urls")),
+    # Dashboard
+    path("", include("dashboard.urls")),
+    
+    path(
+    "projects/",
+    include(("projects.urls", "projects"), namespace="projects"),
+),
 ]

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card">
+
+        <div class="card-header bg-danger text-white">
+            Confirm Delete
+        </div>
+
+        <div class="card-body">
+
+            <p>Are you sure you want to delete:</p>
+
+            <h5>{{ object.employee_name }}</h5>
+            <p class="text-muted">{{ object.get_role_display }}</p>
+
+            <form method="post">
+                {% csrf_token %}
+
+                <button type="submit" class="btn btn-danger">
+                    Yes, Delete
+                </button>
+
+                <a href="{% url 'projects:team-list' project_pk=object.project.pk %}"
+                   class="btn btn-secondary">
+                    Cancel
+                </a>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
