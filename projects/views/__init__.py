@@ -4,3 +4,4 @@ from .detail import ProjectDetailView
 from .update import ProjectUpdateView
 from .delete import ProjectDeleteView
 from .team import *
+from .charter import *

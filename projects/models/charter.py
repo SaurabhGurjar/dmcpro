@@ -10,17 +10,32 @@ class ProjectCharter(models.Model):
         related_name="charter",
     )
 
+    # ==========================
+    # Business Information
+    # ==========================
+
     business_case = models.TextField(blank=True)
 
     problem_statement = models.TextField(blank=True)
 
     goal_statement = models.TextField(blank=True)
 
+    # ==========================
+    # Scope
+    # ==========================
+
     scope_in = models.TextField(blank=True)
 
     scope_out = models.TextField(blank=True)
 
-    expected_benefits = models.TextField(blank=True)
+    benefits = models.TextField(
+        blank=True,
+        help_text="Expected business benefits from this project.",
+    )
+
+    # ==========================
+    # Planning
+    # ==========================
 
     assumptions = models.TextField(blank=True)
 
@@ -30,15 +45,9 @@ class ProjectCharter(models.Model):
 
     financial_impact = models.TextField(blank=True)
 
-    start_date = models.DateField(
-        null=True,
-        blank=True,
-    )
-
-    target_completion_date = models.DateField(
-        null=True,
-        blank=True,
-    )
+    # ==========================
+    # Approval
+    # ==========================
 
     approved_by = models.CharField(
         max_length=100,
@@ -50,7 +59,15 @@ class ProjectCharter(models.Model):
         blank=True,
     )
 
+    # ==========================
+    # Additional Notes
+    # ==========================
+
     notes = models.TextField(blank=True)
+
+    # ==========================
+    # Audit Fields
+    # ==========================
 
     created_at = models.DateTimeField(
         auto_now_add=True,
@@ -60,5 +77,8 @@ class ProjectCharter(models.Model):
         auto_now=True,
     )
 
+    class Meta:
+        ordering = ["project"]
+
     def __str__(self):
-        return f"Charter - {self.project.title}"
+        return f"Charter - {self.project.project_code}"

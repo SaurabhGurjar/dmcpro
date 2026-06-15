@@ -8,19 +8,18 @@ class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
 
-        exclude = (
-            "created_by",
-            "created_at",
-            "updated_at",
-        )
+        fields = [
+            "title",
+            "project_code",
+            "project_type",
+            "status",
+            "priority",
+            "start_date",
+            "target_completion_date",
+            "actual_completion_date",
+        ]
 
         widgets = {
-            "problem_statement": forms.Textarea(attrs={"rows": 4}),
-            "goal_statement": forms.Textarea(attrs={"rows": 4}),
-            "business_case": forms.Textarea(attrs={"rows": 4}),
-            "scope_in": forms.Textarea(attrs={"rows": 3}),
-            "scope_out": forms.Textarea(attrs={"rows": 3}),
-            "benefits": forms.Textarea(attrs={"rows": 3}),
             "start_date": forms.DateInput(attrs={"type": "date"}),
             "target_completion_date": forms.DateInput(attrs={"type": "date"}),
             "actual_completion_date": forms.DateInput(attrs={"type": "date"}),

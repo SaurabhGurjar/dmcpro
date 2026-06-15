@@ -1,7 +1,7 @@
 from django.urls import path
 
 from .views.delete import ProjectDeleteView
-from .views import ProjectListView, ProjectCreateView, ProjectDetailView, TeamListView, ProjectCreateView, TeamCreateView, TeamUpdateView, TeamDeleteView
+from .views import ProjectListView, ProjectCreateView, ProjectDetailView, TeamListView, ProjectCreateView, TeamCreateView, TeamUpdateView, TeamDeleteView, CharterUpdateView, CharterCreateView, CharterDetailView
 from .views.update import ProjectUpdateView
 from .views.team import *
 
@@ -61,5 +61,24 @@ urlpatterns = [
         "team/<int:pk>/delete/",
         TeamDeleteView.as_view(),
         name="team-delete",
+    ),
+    
+   # Charter
+    path(
+        "<int:project_pk>/charter/",
+        CharterDetailView.as_view(),
+        name="charter-detail",
+    ),
+
+    path(
+        "<int:project_pk>/charter/create/",
+        CharterCreateView.as_view(),
+        name="charter-create",
+    ),
+
+    path(
+        "<int:project_pk>/charter/edit/",
+        CharterUpdateView.as_view(),
+        name="charter-update",
     ),
 ]

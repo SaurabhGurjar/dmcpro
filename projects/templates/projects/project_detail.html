@@ -61,479 +61,146 @@
 
     </div>
 
-    <div class="row g-4">
-
-        <!-- LEFT COLUMN -->
-
-        <div class="col-lg-8">
-
-            <!-- Business Information -->
-
-            <div class="card shadow-sm border-0 rounded-4 mb-4">
-
-                <div class="card-header bg-white border-0 py-3">
-
-                    <h5 class="mb-0 fw-semibold">
-
-                        <i class="bi bi-briefcase me-2"></i>
-
-                        Business Information
-
-                    </h5>
-
-                </div>
-
-                <div class="card-body">
-
-                    <div class="mb-4">
-
-                        <h6 class="fw-semibold">
-                            Problem Statement
-                        </h6>
-
-                        <p class="text-muted mb-0">
-
-                            {{ project.problem_statement|default:"Not specified." }}
-
-                        </p>
-
-                    </div>
-
-                    <hr>
-
-                    <div class="mb-4">
-
-                        <h6 class="fw-semibold">
-
-                            Goal Statement
-
-                        </h6>
-
-                        <p class="text-muted mb-0">
-
-                            {{ project.goal_statement|default:"Not specified." }}
-
-                        </p>
-
-                    </div>
-
-                    <hr>
-
-                    <div class="mb-4">
-
-                        <h6 class="fw-semibold">
-
-                            Business Case
-
-                        </h6>
-
-                        <p class="text-muted mb-0">
-
-                            {{ project.business_case|default:"Not specified." }}
-
-                        </p>
-
-                    </div>
-
-                    <hr>
-
-                    <div>
-
-                        <h6 class="fw-semibold">
-
-                            Expected Benefits
-
-                        </h6>
-
-                        <p class="text-muted mb-0">
-
-                            {{ project.benefits|default:"Not specified." }}
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- Scope -->
-
-            <div class="card shadow-sm border-0 rounded-4">
-
-                <div class="card-header bg-white border-0 py-3">
-
-                    <h5 class="mb-0 fw-semibold">
-
-                        <i class="bi bi-bounding-box me-2"></i>
-
-                        Project Scope
-
-                    </h5>
-
-                </div>
-
-                <div class="card-body">
-
-                    <div class="mb-4">
-
-                        <h6 class="fw-semibold">
-
-                            Scope In
-
-                        </h6>
-
-                        <p class="text-muted mb-0">
-
-                            {{ project.scope_in|default:"Not specified." }}
-
-                        </p>
-
-                    </div>
-
-                    <hr>
-
-                    <div>
-
-                        <h6 class="fw-semibold">
-
-                            Scope Out
-
-                        </h6>
-
-                        <p class="text-muted mb-0">
-
-                            {{ project.scope_out|default:"Not specified." }}
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
+    
         <!-- RIGHT SIDEBAR -->
-
-        <div class="col-lg-4">
+        <div class="col">
             <!-- Summary Card -->
-
-<div class="card shadow-sm border-0 rounded-4 mb-4">
-
-    <div class="card-header bg-white border-0">
-
-        <h5 class="mb-0 fw-semibold">
-
-            <i class="bi bi-info-circle me-2"></i>
-
-            Summary
-
-        </h5>
-
-    </div>
-
-    <div class="card-body">
-
-        <table class="table table-borderless table-sm align-middle mb-0">
-
-            <tbody>
-
-                <tr>
-
-                    <th class="text-muted" style="width:40%">
-                        Type
-                    </th>
-
-                    <td>
-                        {{ project.get_project_type_display }}
-                    </td>
-
-                </tr>
-
-                <tr>
-
-                    <th class="text-muted">
-                        Status
-                    </th>
-
-                    <td>
-
-                        <span class="badge bg-primary">
-
-                            {{ project.get_status_display }}
-
-                        </span>
-
-                    </td>
-
-                </tr>
-
-                <tr>
-
-                    <th class="text-muted">
-                        Priority
-                    </th>
-
-                    <td>
-
-                        <span class="badge bg-warning text-dark">
-
-                            {{ project.get_priority_display }}
-
-                        </span>
-
-                    </td>
-
-                </tr>
-
-                <tr>
-
-                    <th class="text-muted">
-                        Start
-                    </th>
-
-                    <td>
-
-                        {{ project.start_date|default:"-" }}
-
-                    </td>
-
-                </tr>
-
-                <tr>
-
-                    <th class="text-muted">
-                        Target
-                    </th>
-
-                    <td>
-
-                        {{ project.target_completion_date|default:"-" }}
-
-                    </td>
-
-                </tr>
-
-            </tbody>
-
-        </table>
-
-    </div>
-
-</div>
-
-
-<!-- Team Card -->
-
-<div class="card shadow-sm border-0 rounded-4 mb-4">
-
-    <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
-
-        <h5 class="mb-0 fw-semibold">
-
-            <i class="bi bi-people me-2"></i>
-
-            Project Team
-
-        </h5>
-
-        <a href="{% url 'projects:team-list' project_pk=project.pk %}"
-           class="btn btn-primary btn-sm rounded-pill">
-
-            Manage
-
-        </a>
-
-    </div>
-
-    <div class="card-body">
-
-        <div class="mb-3">
-
-            <small class="text-muted d-block">
-
-                Leader
-
-            </small>
-
-            <strong>
-
-                {% if leader %}
-
-                    {{ leader.employee_name }}
-
-                {% else %}
-
-                    Not Assigned
-
-                {% endif %}
-
-            </strong>
-
-        </div>
-
-        <div class="mb-3">
-
-            <small class="text-muted d-block">
-
-                Sponsor
-
-            </small>
-
-            <strong>
-
-                {% if sponsor %}
-
-                    {{ sponsor.employee_name }}
-
-                {% else %}
-
-                    Not Assigned
-
-                {% endif %}
-
-            </strong>
-
-        </div>
-
-        <div class="mb-4">
-
-            <small class="text-muted d-block">
-
-                Facilitator
-
-            </small>
-
-            <strong>
-
-                {% if facilitator %}
-
-                    {{ facilitator.employee_name }}
-
-                {% else %}
-
-                    Not Assigned
-
-                {% endif %}
-
-            </strong>
-
-        </div>
-
-        <hr>
-
-        <small class="text-muted">
-
-            Team Members
-
-        </small>
-
-        <div class="mt-3">
-
-            {% for member in members %}
-
-                <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
-
-                    <div>
-
-                        <div class="fw-semibold">
-
-                            {{ member.employee_name }}
-
-                        </div>
-
-                        <small class="text-muted">
-
-                            {{ member.designation }}
-
-                        </small>
-
-                    </div>
-
+            <div class="card shadow-sm border-0 rounded-4 mb-4">
+                <div class="card-header bg-white border-0">
+                    <h5 class="mb-0 fw-semibold">
+                        <i class="bi bi-info-circle me-2"></i>
+                        Summary
+                    </h5>
                 </div>
+                <div class="card-body">
+                    <table class="table table-borderless table-sm align-middle mb-0">
+                        <tbody>
+                            <tr>
+                                <th class="text-muted" style="width:40%">Type</th>
+                                <td>{{ project.get_project_type_display }}</td>
+                            </tr>
+                            <tr>
+                                <th class="text-muted">Status</th>
+                                <td>
+                                    <span class="badge bg-primary">
+                                        {{ project.get_status_display }}
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-muted">Priority</th>
+                                <td>
+                                    <span class="badge bg-warning text-dark">
+                                        {{ project.get_priority_display }}
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-muted">Start</th>
+                                <td>{{ project.start_date|default:"-" }}</td>
+                            </tr>
+                            <tr>
+                                <th class="text-muted">Target</th>
+                                <td>{{ project.target_completion_date|default:"-" }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-            {% empty %}
+            <!-- Team Card -->
+            <div class="card shadow-sm border-0 rounded-4 mb-4">
+                <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 fw-semibold">
+                        <i class="bi bi-people me-2"></i>
+                        Project Team
+                    </h5>
+                    <a href="{% url 'projects:team-list' project_pk=project.pk %}"
+                       class="btn btn-primary btn-sm rounded-pill">
+                        Manage
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <small class="text-muted d-block">Leader</small>
+                        <strong>
+                            {% if leader %}
+                                {{ leader.employee_name }}
+                            {% else %}
+                                Not Assigned
+                            {% endif %}
+                        </strong>
+                    </div>
+                    <div class="mb-3">
+                        <small class="text-muted d-block">Sponsor</small>
+                        <strong>
+                            {% if sponsor %}
+                                {{ sponsor.employee_name }}
+                            {% else %}
+                                Not Assigned
+                            {% endif %}
+                        </strong>
+                    </div>
+                    <div class="mb-4">
+                        <small class="text-muted d-block">Facilitator</small>
+                        <strong>
+                            {% if facilitator %}
+                                {{ facilitator.employee_name }}
+                            {% else %}
+                                Not Assigned
+                            {% endif %}
+                        </strong>
+                    </div>
+                    <hr>
+                    <small class="text-muted">Team Members</small>
+                    <div class="mt-3">
+                        {% for member in members %}
+                            <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+                                <div>
+                                    <div class="fw-semibold">{{ member.employee_name }}</div>
+                                    <small class="text-muted">{{ member.designation }}</small>
+                                </div>
+                            </div>
+                        {% empty %}
+                            <p class="text-muted mb-0">No team members added.</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
 
-                <p class="text-muted mb-0">
-
-                    No team members added.
-
-                </p>
-
-            {% endfor %}
-
+            <!-- DMAIC Progress -->
+            <div class="card shadow-sm border-0 rounded-4">
+                <div class="card-header bg-white border-0">
+                    <h5 class="mb-0 fw-semibold">
+                        <i class="bi bi-graph-up-arrow me-2"></i>
+                        DMAIC Progress
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between py-2">
+                        <span>Define</span>
+                        <span class="badge bg-success">✓</span>
+                    </div>
+                    <div class="d-flex justify-content-between py-2">
+                        <span>Measure</span>
+                        <span class="badge bg-secondary">Pending</span>
+                    </div>
+                    <div class="d-flex justify-content-between py-2">
+                        <span>Analyze</span>
+                        <span class="badge bg-secondary">Pending</span>
+                    </div>
+                    <div class="d-flex justify-content-between py-2">
+                        <span>Improve</span>
+                        <span class="badge bg-secondary">Pending</span>
+                    </div>
+                    <div class="d-flex justify-content-between py-2">
+                        <span>Control</span>
+                        <span class="badge bg-secondary">Pending</span>
+                    </div>
+                </div>
+            </div>
         </div>
-
-    </div>
-
-</div>
-
-
-<!-- DMAIC Progress -->
-
-<div class="card shadow-sm border-0 rounded-4">
-
-    <div class="card-header bg-white border-0">
-
-        <h5 class="mb-0 fw-semibold">
-
-            <i class="bi bi-graph-up-arrow me-2"></i>
-
-            DMAIC Progress
-
-        </h5>
-
-    </div>
-
-    <div class="card-body">
-
-        <div class="d-flex justify-content-between py-2">
-
-            <span>Define</span>
-
-            <span class="badge bg-success">✓</span>
-
-        </div>
-
-        <div class="d-flex justify-content-between py-2">
-
-            <span>Measure</span>
-
-            <span class="badge bg-secondary">Pending</span>
-
-        </div>
-
-        <div class="d-flex justify-content-between py-2">
-
-            <span>Analyze</span>
-
-            <span class="badge bg-secondary">Pending</span>
-
-        </div>
-
-        <div class="d-flex justify-content-between py-2">
-
-            <span>Improve</span>
-
-            <span class="badge bg-secondary">Pending</span>
-
-        </div>
-
-        <div class="d-flex justify-content-between py-2">
-
-            <span>Control</span>
-
-            <span class="badge bg-secondary">Pending</span>
-
-        </div>
-
-    </div>
-
-</div>
-    </div>
-</div>
+   
 
 </div>
 

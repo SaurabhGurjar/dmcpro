@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+
+{% block title %}Project Charter{% endblock %}
+
+{% block content %}
+
+{% include "projects/partials/project_nav.html" %}
+
+<div class="container py-4">
+
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h2 class="mb-1">Project Charter</h2>
+            <p class="text-muted mb-0">
+                {{ project.title }}
+            </p>
+        </div>
+
+        <a href="{% url 'projects:charter-update' project_pk=project.pk %}"
+           class="btn btn-primary">
+            <i class="bi bi-pencil-square"></i>
+            Edit Charter
+        </a>
+
+    </div>
+
+
+    <!-- Business Information -->
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-header">
+            <h5 class="mb-0">
+                <i class="bi bi-briefcase"></i>
+                Business Information
+            </h5>
+        </div>
+
+        <div class="card-body">
+
+            <h6>Problem Statement</h6>
+
+            <p>
+                {{ charter.problem_statement|default:"-"|linebreaks }}
+            </p>
+
+            <hr>
+
+            <h6>Goal Statement</h6>
+
+            <p>
+                {{ charter.goal_statement|default:"-"|linebreaks }}
+            </p>
+
+            <hr>
+
+            <h6>Business Case</h6>
+
+            <p>
+                {{ charter.business_case|default:"-"|linebreaks }}
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Scope & Benefits -->
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-header">
+            <h5 class="mb-0">
+                <i class="bi bi-diagram-3"></i>
+                Scope & Benefits
+            </h5>
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <h6>Scope In</h6>
+
+                    <p>
+                        {{ charter.scope_in|default:"-"|linebreaks }}
+                    </p>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <h6>Scope Out</h6>
+
+                    <p>
+                        {{ charter.scope_out|default:"-"|linebreaks }}
+                    </p>
+
+                </div>
+
+            </div>
+
+            <hr>
+
+            <h6>Expected Benefits</h6>
+
+            <p>
+                {{ charter.benefits|default:"-"|linebreaks }}
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Planning -->
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-header">
+            <h5 class="mb-0">
+                <i class="bi bi-calendar-check"></i>
+                Planning
+            </h5>
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-borderless">
+
+                <tr>
+                    <th style="width:25%">
+                        Financial Impact
+                    </th>
+                    <td>
+                        {{ charter.financial_impact|default:"-" }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        Assumptions
+                    </th>
+                    <td>
+                        {{ charter.assumptions|default:"-"|linebreaks }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        Constraints
+                    </th>
+                    <td>
+                        {{ charter.constraints|default:"-"|linebreaks }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        Notes
+                    </th>
+                    <td>
+                        {{ charter.notes|default:"-"|linebreaks }}
+                    </td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- Footer -->
+    <div class="text-end">
+
+        <a href="{% url 'projects:charter-update' project_pk=project.pk %}"
+           class="btn btn-primary">
+
+            <i class="bi bi-pencil-square"></i>
+
+            Edit Charter
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

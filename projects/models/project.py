@@ -34,32 +34,7 @@ class Project(models.Model):
         default=ProjectStatus.DEFINE,
     )
 
-    problem_statement = models.TextField()
-
-    goal_statement = models.TextField()
-
-    business_case = models.TextField(
-        blank=True,
-        default="",
-    )
-
-    scope_in = models.TextField(
-        verbose_name="Scope (In)",
-        blank=True,
-        default="",
-    )
-
-    scope_out = models.TextField(
-        verbose_name="Scope (Out)",
-        blank=True,
-        default="",
-    )
-
-    benefits = models.TextField(
-        blank=True,
-        default="",
-    )
-
+   
     start_date = models.DateField()
 
     target_completion_date = models.DateField()
